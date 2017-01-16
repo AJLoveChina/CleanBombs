@@ -283,12 +283,18 @@ $(function () {
         $scope.returnHome = function () {
             $scope.s.step = 1;
         };
-        
+
+        var interval;
         $scope.calculateTime = function () {
-            setInterval(function () {
+            var time = 0;
+            if (interval) {
+                clearInterval(interval);
+            }
+            interval = setInterval(function () {
                 $scope.$apply(function () {
                     if (!$scope.s.gameover) {
-                        $scope.s.seconds += 1;
+                        time += 1;
+                        $scope.s.seconds = time;
                     }
                 })
             }, 1000)
